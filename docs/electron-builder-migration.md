@@ -78,17 +78,24 @@ This will create:
 
 ### Installing on Ubuntu
 
-**Option 1: AppImage (Recommended - Universal)**
+**Option 1: Install Script (Recommended - Auto-detects latest)**
 ```bash
-chmod +x Medis-1.0.3.AppImage
-./Medis-1.0.3.AppImage
+# Install latest version from your fork
+curl -fsSL https://raw.githubusercontent.com/haipham22/medis/master/install-medis.sh | bash
+
+# Or install specific version
+VERSION=v1.0.3 curl -fsSL https://raw.githubusercontent.com/haipham22/medis/master/install-medis.sh | bash
+
+# Or use original upstream releases
+REPO=luin/medis curl -fsSL https://raw.githubusercontent.com/haipham22/medis/master/install-medis.sh | bash
 ```
 
-**Option 2: DEB Package (Ubuntu/Debian)**
+**Option 2: AppImage (Direct download)**
 ```bash
-sudo dpkg -i medis_1.0.3_amd64.deb
-sudo apt-get install -f -y  # Fix any missing dependencies
-medis
+# Download latest
+wget https://github.com/haipham22/medis/releases/latest/download/Medis-*.AppImage
+chmod +x Medis-*.AppImage
+./Medis-*.AppImage
 ```
 
 **Option 3: Tarball**
