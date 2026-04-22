@@ -62,6 +62,18 @@ You can download compiled versions of Medis for Mac OS X from [the release page]
 
 ```
     $ npm start
+
+## Documentation
+
+For comprehensive documentation, please refer to the [docs](./docs/) directory:
+
+- [Project Overview & Requirements](./docs/project-overview-pdr.md)
+- [Codebase Summary](./docs/codebase-summary.md) 
+- [Code Standards](./docs/code-standards.md)
+- [System Architecture](./docs/system-architecture.md)
+- [Project Roadmap](./docs/project-roadmap.md)
+- [Deployment Guide](./docs/deployment-guide.md)
+- [Design Guidelines](./docs/design-guidelines.md)
 ```
 
 ## Connect to Heroku

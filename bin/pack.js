@@ -1,33 +1,37 @@
-const packager = require('electron-packager')
-const path = require('path')
-const pkg = require('../package')
-const flat = require('electron-osx-sign').flat
+'use strict';
 
-const resourcesPath = path.join(__dirname, '..', 'resources')
+const { execSync } = require('child_process');
+const path = require('path');
 
-packager({
-  dir: path.join(__dirname, '..'),
-  appCopyright: '© 2019, Zihua Li',
-  asar: true,
-  overwrite: true,
-  electronVersion: pkg.electronVersion,
-  icon: path.join(resourcesPath, 'icns', 'MyIcon'),
-  out: path.join(__dirname, '..', 'dist', 'out'),
-  platform: 'mas',
-  appBundleId: `li.zihua.${pkg.name}`,
-  appCategoryType: 'public.app-category.developer-tools',
-  osxSign: {
-    type: process.env.NODE_ENV === 'production' ? 'distribution' : 'development',
-    entitlements: path.join(resourcesPath, 'parent.plist'),
-    'entitlements-inherit': path.join(resourcesPath, 'child.plist')
-  }
-}).then((res) => {
-  const app = path.join(res[0], `${pkg.productName}.app`)
-  console.log('flating...', app)
-  flat({ app }, function done (err) {
-    if (err) {
-      throw err
-    }
-    process.exit(0);
-  })
-})
+// Detect platform from environment or use current platform
+const platform = process.env.TARGET_PLATFORM || process.platform;
+
+// Map platform names to electron-builder format
+const platformMap = {
+  'darwin': 'mac',
+  'macos': 'mac',
+  'linux': 'linux',
+  'win32': 'win',
+  'windows': 'win'
+};
+
+const targetPlatform = platformMap[platform] || platform;
+
+console.log(`Building Medis for platform: ${targetPlatform}`);
+
+try {
+  // Build the project first
+  console.log('Running webpack build...');
+  execSync('npm run build', { stdio: 'inherit' });
+
+  // Run electron-builder with the specified platform
+  console.log(`Packaging for ${targetPlatform}...`);
+  const buildCommand = `npx electron-builder --${targetPlatform}`;
+  execSync(buildCommand, { stdio: 'inherit' });
+
+  console.log(`\n✓ Build complete for ${targetPlatform}!`);
+  console.log('Output directory: dist/');
+} catch (error) {
+  console.error('Build failed:', error.message);
+  process.exit(1);
+}
