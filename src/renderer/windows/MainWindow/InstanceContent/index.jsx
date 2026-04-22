@@ -4,7 +4,7 @@ import React, {PureComponent} from 'react'
 import ConnectionSelectorContainer from './ConnectionSelectorContainer'
 import DatabaseContainer from './DatabaseContainer'
 import Modal from './Modal'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
 class InstanceContent extends PureComponent {
   constructor() {
@@ -60,21 +60,22 @@ class InstanceContent extends PureComponent {
 
     return (
       <div className="main">
-        <ReactCSSTransitionGroup
-          transitionName="modal"
-          transitionEnterTimeout={150}
-          transitionLeaveTimeout={150}
-          >
+        <TransitionGroup component={null}>
           {
           this.state.modal &&
-          <Modal
+          <CSSTransition
             key="modal"
-            {...this.state.modal}
-            onSubmit={this.modalSubmit.bind(this)}
-            onCancel={this.modalCancel.bind(this)}
-            />
+            classNames="modal"
+            timeout={{enter: 150, exit: 150}}
+            >
+            <Modal
+              {...this.state.modal}
+              onSubmit={this.modalSubmit.bind(this)}
+              onCancel={this.modalCancel.bind(this)}
+              />
+          </CSSTransition>
         }
-        </ReactCSSTransitionGroup>
+        </TransitionGroup>
         {contents}
       </div>
     )
