@@ -16,20 +16,20 @@ _(or searching "Medis 2" on macOS App Store if the above link doesn't work for y
 
 ## Install on Linux
 
-**Quick Install (Ubuntu/Debian):**
+**Quick Install (Cross-Platform Script - Linux & macOS):**
 
 ```bash
-# Install latest version automatically
+# Auto-detect platform and install latest version
 curl -fsSL https://raw.githubusercontent.com/haipham22/medis/master/install-medis.sh | bash
 
-# Or install specific version
+# Install specific version
 VERSION=v1.0.3 curl -fsSL https://raw.githubusercontent.com/haipham22/medis/master/install-medis.sh | bash
 
-# Or use original upstream releases
+# Use original upstream releases
 REPO=luin/medis curl -fsSL https://raw.githubusercontent.com/haipham22/medis/master/install-medis.sh | bash
 ```
 
-**Manual Install:**
+**Manual Install (Linux):**
 
 ```bash
 # Download latest AppImage
@@ -45,7 +45,7 @@ chmod +x Medis-*.AppImage
 ./Medis-*.AppImage
 ```
 
-**System-wide Install:**
+**System-wide Install (Linux):**
 
 ```bash
 # Move to /opt and create symlink
