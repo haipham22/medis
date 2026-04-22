@@ -78,19 +78,25 @@ This will create:
 
 ### Installing on Ubuntu
 
-**Option 1: Install Script (Recommended - Auto-detects latest)**
+**Option 1: Cross-Platform Install Script (Recommended - Auto-detects platform and version)**
+
 ```bash
-# Install latest version from your fork
+# Auto-detects Linux/macOS and installs latest version
 curl -fsSL https://raw.githubusercontent.com/haipham22/medis/master/install-medis.sh | bash
 
-# Or install specific version
+# Install specific version
 VERSION=v1.0.3 curl -fsSL https://raw.githubusercontent.com/haipham22/medis/master/install-medis.sh | bash
 
-# Or use original upstream releases
+# Use original upstream releases
 REPO=luin/medis curl -fsSL https://raw.githubusercontent.com/haipham22/medis/master/install-medis.sh | bash
 ```
 
-**Option 2: AppImage (Direct download)**
+The install script automatically:
+- Detects your platform (Linux/macOS)
+- Downloads the latest version
+- Installs in the appropriate location
+
+**Option 2: AppImage (Direct download - Linux only)**
 ```bash
 # Download latest
 wget https://github.com/haipham22/medis/releases/latest/download/Medis-*.AppImage
