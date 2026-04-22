@@ -14,6 +14,54 @@ _(or searching "Medis 2" on macOS App Store if the above link doesn't work for y
 
 ---
 
+## Install on Linux
+
+**Quick Install (Ubuntu/Debian):**
+
+```bash
+# Download and install with one command
+curl -fsSL https://raw.githubusercontent.com/haipham22/medis/master/install-medis.sh | bash
+```
+
+**Manual Install:**
+
+```bash
+# Download AppImage
+wget https://github.com/haipham22/medis/releases/download/v1.0.3/Medis-1.0.3.AppImage
+
+# Make executable
+chmod +x Medis-1.0.3.AppImage
+
+# Run
+./Medis-1.0.3.AppImage
+```
+
+**System-wide Install:**
+
+```bash
+# Move to /opt and create symlink
+sudo mv Medis-1.0.3.AppImage /opt/Medis.AppImage
+sudo chmod +x /opt/Medis.AppImage
+sudo ln -s /opt/Medis.AppImage /usr/local/bin/medis
+
+# Run from anywhere
+medis
+```
+
+For detailed installation instructions and troubleshooting, see the [Deployment Guide](./docs/deployment-guide.md) or [electron-builder Migration Guide](./docs/electron-builder-migration.md).
+
+<hr />
+
+## Install on Windows
+
+You can download compiled installer of Medis for Windows from [Windows release page](https://github.com/classfellow/medis/releases/tag/win).
+
+## Install on macOS
+
+You can download compiled versions of Medis for Mac OS X from [the release page](https://github.com/luin/medis/releases) or download **Medis 2** from the [Mac App Store](https://apps.apple.com/us/app/medis-2-gui-for-redis/id1579200037?mt=12).
+
+---
+
 Medis is a beautiful, easy-to-use Redis management application built on the modern web with [Electron](https://github.com/atom/electron), [React](https://facebook.github.io/react/), and [Redux](https://github.com/rackt/redux). It's powered by many awesome Node.js modules, especially [ioredis](https://github.com/luin/ioredis) and [ssh2](https://github.com/mscdex/ssh2).
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
@@ -34,15 +82,6 @@ It also supports many advanced features:
 **Note**: Medis only supports Redis >= 2.8 version because `SCAN` command was introduced since 2.8. `SCAN` is very useful to get key list without blocking the server, which is crucial to the production environment. Because the latest stable is 5.0 and 2.6 is a very old version, Medis doesn't support it.
 
 <hr />
-
-## Download Medis on Windows
-
-You can download compiled installer of Medis for Windows from the below page
-[download page](https://github.com/classfellow/medis/releases/tag/win)
-
-## Download Medis on Mac
-
-You can download compiled versions of Medis for Mac OS X from [the release page](https://github.com/luin/medis/releases).
 
 ## Running Locally
 
@@ -96,7 +135,7 @@ And then input `HOST`, `PORT` and `PASSWORD` to the connection tab.
 
 ## Roadmap
 
-- Windows and Linux version (with electron-packager)
+- ~~Windows and Linux version~~ ✅ Linux support added!
 - Support for SaaS Redis services
 - Lua script editor
 - Cluster management
